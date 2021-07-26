@@ -11,15 +11,19 @@ export default function Home() {
       </Head>
       <div className="flex flex-col w-full h-screen">
         <NavBar />
-        <div className="flex flex-col items-center w-full mt-10 space-y-5">
-          <span className="font-bold text-xl text-gray-200">
+        <div className="flex flex-col items-center justify-center w-full h-full space-y-5">
+          <span className="font-bold text-3xl text-gray-200">
             Welcome to&nbsp;
-            <span className="text-lg font-bold">
+            <span className="text-3xl font-bold">
               Samp<span className="text-gray-400">Ag</span>uita
             </span>
           </span>
-          <span className="font-black text-5xl">
-            Your ChemLab Assistant
+          <span className="font-black text-5xl text-center">
+            Your Periodic Table Assistant
+          </span>
+          <span className="font-normal text-xl text-gray-400 text-center w-full max-w-xl">
+            Anyone can add, update and delete all of the data here, enjoy your day. Your code idea for Next JS, Prisma ORM, Tailwind CSS, and SWR
+            see code in here <code><a href="https://github.com/VeoScript/sampaguita" target="_blank" rel="noreferrer" className="text-white hover:underline">https://github.com/VeoScript/sampaguita</a></code>
           </span>
         </div>
       </div>
