@@ -17,7 +17,7 @@ export default function NavBar() {
               Home
             </a> 
           </Link>
-          <Link href="/">
+          <Link href="/periodic-table">
             <a className="btn btn-ghost btn-sm rounded-btn">
               Periodic Table
             </a> 
