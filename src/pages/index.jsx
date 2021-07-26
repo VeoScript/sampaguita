@@ -22,8 +22,8 @@ export default function Home() {
             Your Periodic Table Assistant
           </span>
           <span className="font-normal text-xl text-gray-400 text-center w-full max-w-xl">
-            Anyone can add, update and delete all of the data here, enjoy your day. Your code idea for Next JS, Prisma ORM, Tailwind CSS, and SWR
-            see code in here <code><a href="https://github.com/VeoScript/sampaguita" target="_blank" rel="noreferrer" className="text-white hover:underline">https://github.com/VeoScript/sampaguita</a></code>
+            Anyone can add, update and delete all of the data here, enjoy your day. The code idea of Next JS, Prisma ORM, Tailwind CSS, and SWR
+            view source code here <code><a href="https://github.com/VeoScript/sampaguita" target="_blank" rel="noreferrer" className="text-white hover:underline">https://github.com/VeoScript/sampaguita</a></code>
           </span>
         </div>
       </div>
