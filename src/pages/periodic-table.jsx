@@ -4,8 +4,9 @@ import NavBar from '~/components/NavBar'
 import AddElement from '~/components/AddElement'
 import LoadSpinner from '~/components/LoadSpinner'
 import useSWR from 'swr'
+import { PrismaClient } from '@prisma/client'
 
-export default function PeriodicTable() {
+export default function PeriodicTable({ chemElements }) {
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -39,7 +40,9 @@ export default function PeriodicTable() {
               <div className="form-control w-full max-w-md">
                 <input type="text" placeholder="Search" className="input input-sm input-bordered" />
               </div>
-              <AddElement />
+              <AddElement
+                chemElements={chemElements}
+              />
             </div>
           </div>
           <div className="flex flex-col w-full h-full overflow-y-auto px-3 py-3 pb-20">
@@ -90,4 +93,15 @@ export default function PeriodicTable() {
       </div>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const prisma = new PrismaClient()
+  const chemElements = await prisma.chemElements.findMany()
+  return {
+    props: {
+      chemElements
+    },
+    revalidate: 10,
+  }
 }

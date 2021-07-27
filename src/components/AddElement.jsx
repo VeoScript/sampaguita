@@ -1,9 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast, { Toaster } from 'react-hot-toast'
 import { mutate } from 'swr'
 
-export default function AddElement() {
+export default function AddElement({ chemElements }) {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -23,6 +24,52 @@ export default function AddElement() {
     const atomic_no = formData.atomic_number
     const symbol = formData.symbol
     const cgb = formData.chemical_group_block
+
+    const checkName = chemElements.some(element_name => element_name.name === name)
+    const checkAtomic = chemElements.some(element_atomic => element_atomic.atomic_no === atomic_no)
+    const checkSymbol = chemElements.some(element_symbol => element_symbol.symbol === symbol)
+
+    if (checkName) {
+      toast('The name of the element is already exist.',
+        {
+          icon: '😥',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+
+    if (checkAtomic) {
+      toast('Atomic number is already exist.',
+        {
+          icon: '😥',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
+
+    if (checkSymbol) {
+      toast('This Symbol is already exist.',
+        {
+          icon: '😥',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return
+    }
 
     await fetch('/api/add_chemelements', {
       method: 'POST',
@@ -88,6 +135,10 @@ export default function AddElement() {
               leaveTo="opacity-0 scale-95"
             >
               <div className="inline-block w-full max-w-lg p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-[#2A2E37] shadow-xl rounded-2xl">
+                <Toaster
+                  position="top-center"
+                  reverseOrder={false}
+                />
                 <Dialog.Title
                   as="h3"
                   className="flex flex-row justify-center text-lg font-medium leading-6 text-gray-400"
