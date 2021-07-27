@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import NavBar from '~/components/NavBar'
 import AddElement from '~/components/AddElement'
+import LoadSpinner from '~/components/LoadSpinner'
 import useSWR from 'swr'
 
 export default function PeriodicTable() {
@@ -10,8 +11,19 @@ export default function PeriodicTable() {
 
   const { data, error } = useSWR('/api/chemelements', fetcher, { refreshInterval: 1000 })
 
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  if (error) {
+    return (
+      <div className="flex flex-row items-center justify-center w-full h-screen bg-[#3D4451] text-white">
+        Failed to Load... Refresh Page.
+      </div>
+    )
+  }
+
+  if (!data) {
+    return (
+      <LoadSpinner />
+    )
+  }
 
   return (
     <>

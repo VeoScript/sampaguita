@@ -18,7 +18,7 @@ export default function Home() {
               Samp<span className="text-gray-400">Ag</span>uita
             </span>
           </span>
-          <span className="font-black text-5xl text-center">
+          <span className="font-black text-5xl text-gray-200 text-center">
             Your Periodic Table Assistant
           </span>
           <span className="font-normal text-xl text-gray-400 text-center w-full max-w-xl">

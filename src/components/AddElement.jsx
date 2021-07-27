@@ -96,49 +96,55 @@ export default function AddElement() {
                 </Dialog.Title>
                 <form onSubmit={ handleSubmit(onAddElement) } className="flex flex-col w-full space-y-2 mt-5">
                   <input
-                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
+                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     name="image"
                     placeholder="Element Image"
+                    disabled={isSubmitting}
                     {...register("image", { required: true })}
                   />
                   {errors.image && <span className="text-[10px]">Required</span>}
                   <input
-                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
+                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     name="name"
                     placeholder="Name"
+                    disabled={isSubmitting}
                     {...register("name", { required: true })}
                   />
                   {errors.name && <span className="text-[10px]">Required</span>}
                   <input
-                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
+                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     name="atomic_number"
                     placeholder="Atomic Number"
+                    disabled={isSubmitting}
                     {...register("atomic_number", { required: true })}
                   />
                   {errors.atomic_number && <span className="text-[10px]">Required</span>}
                   <input
-                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
+                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     name="symbol"
                     placeholder="Symbol"
+                    disabled={isSubmitting}
                     {...register("symbol", { required: true })}
                   />
                   {errors.symbol && <span className="text-[10px]">Required</span>}
                   <input
-                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
+                    className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     name="chemical_group_block"
                     placeholder="Chemical Group Block"
+                    disabled={isSubmitting}
                     {...register("chemical_group_block", { required: true })}
                   />
                   {errors.chemical_group_block && <span className="text-[10px]">Required</span>}
                   <div className="flex flex-row items-center justify-end w-full mt-3 space-x-1">
                     <button
                       type="submit"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                      disabled={isSubmitting}
                     >
                       Add
                     </button>
