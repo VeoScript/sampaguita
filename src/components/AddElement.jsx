@@ -140,17 +140,17 @@ export default function AddElement() {
                     {...register("chemical_group_block", { required: true })}
                   />
                   {errors.chemical_group_block && <span className="text-[10px]">Required</span>}
-                  <div className="flex flex-row items-center justify-end w-full mt-3 space-x-1">
+                  <div className="flex flex-row items-center justify-end w-full mt-3 space-x-2">
                     <button
                       type="submit"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="inline-flex justify-center w-full max-w-[6rem] px-4 py-2 text-sm ring-2 ring-[#4D5566] font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
                       disabled={isSubmitting}
                     >
                       Add
                     </button>
                     <button
                       type="button"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      className="inline-flex justify-center w-full max-w-[6rem] px-4 py-2 text-sm ring-2 ring-[#4D5566] font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                       onClick={closeModal}
                     >
                       Cancel
