@@ -1,15 +1,45 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { mutate } from 'swr'
 
 export default function AddElement() {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
+    reset()
     setIsOpen(false)
   }
 
   function openModal() {
     setIsOpen(true)
+  }
+
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm()
+
+  async function onAddElement(formData) {
+    const image = formData.image
+    const name = formData.name
+    const atomic_no = formData.atomic_number
+    const symbol = formData.symbol
+    const cgb = formData.chemical_group_block
+
+    await fetch('/api/add_chemelements', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({  
+        image,
+        name,
+        atomic_no,
+        symbol,
+        cgb
+      })
+    })
+
+    mutate('/api/chemelements')
+    closeModal()
   }
 
   return (
@@ -64,54 +94,63 @@ export default function AddElement() {
                 >
                   Add Element
                 </Dialog.Title>
-                <div className="flex flex-col w-full space-y-2 mt-5">
+                <form onSubmit={ handleSubmit(onAddElement) } className="flex flex-col w-full space-y-2 mt-5">
                   <input
                     className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
                     type="text"
                     name="image"
                     placeholder="Element Image"
+                    {...register("image", { required: true })}
                   />
+                  {errors.image && <span className="text-[10px]">Required</span>}
                   <input
                     className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
                     type="text"
                     name="name"
                     placeholder="Name"
+                    {...register("name", { required: true })}
                   />
+                  {errors.name && <span className="text-[10px]">Required</span>}
                   <input
                     className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
                     type="text"
                     name="atomic_number"
                     placeholder="Atomic Number"
+                    {...register("atomic_number", { required: true })}
                   />
+                  {errors.atomic_number && <span className="text-[10px]">Required</span>}
                   <input
                     className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
                     type="text"
                     name="symbol"
                     placeholder="Symbol"
+                    {...register("symbol", { required: true })}
                   />
+                  {errors.symbol && <span className="text-[10px]">Required</span>}
                   <input
                     className="w-full text-gray-100 bg-[#3D4451] ring-2 ring-[#4D5566] rounded-xl px-5 py-3 focus:ring-[#5B6579] focus:outline-none"
                     type="text"
                     name="chemical_group_block"
                     placeholder="Chemical Group Block"
+                    {...register("chemical_group_block", { required: true })}
                   />
-                </div>
-
-                <div className="flex flex-row items-center justify-end w-full mt-3 space-x-1">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                  >
-                    Add
-                  </button>
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
-                  >
-                    Cancel
-                  </button>
-                </div>
+                  {errors.chemical_group_block && <span className="text-[10px]">Required</span>}
+                  <div className="flex flex-row items-center justify-end w-full mt-3 space-x-1">
+                    <button
+                      type="submit"
+                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    >
+                      Add
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-[#3D4451] border border-transparent rounded-md hover:bg-[#5B6579] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      onClick={closeModal}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
               </div>
             </Transition.Child>
           </div>
