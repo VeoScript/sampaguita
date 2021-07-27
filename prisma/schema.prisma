@@ -1,0 +1,20 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ChemElements {
+  id          Int       @id    @default(autoincrement())
+  image       String
+  name        String    @unique
+  atomic_no   String    @unique
+  symbol      String    @unique
+  cgb         String
+}
